@@ -27,7 +27,7 @@ This is the important part of the architecture: Vellum does not divide a lyric l
 
 ## Supported modes
 
-### `vellum --file song.lrc`
+### `vellum-lyrics --file song.lrc`
 
 Debug mode for local files. This is the easiest way to verify parsing and rendering before connecting to MPRIS. The app reads the file, parses the LRC, then advances using elapsed time from the moment the UI starts.
 
@@ -39,7 +39,7 @@ Use this mode to test enhanced LRC files first:
 
 In that format, each word has its own timestamp and Vellum can show one exact active word at a time.
 
-### `vellum --from-player`
+### `vellum-lyrics --from-player`
 
 Playback mode for Linux desktops with an MPRIS-compatible media player.
 
@@ -97,7 +97,7 @@ The script will:
 Then use:
 
 ```bash
-vellum --from-player
+vellum-lyrics --from-player
 ```
 
 ### Manual Installation
@@ -116,7 +116,7 @@ cargo install vellum-lyrics
 pip install syncedlyrics
 ```
 
-After installation, `vellum` will be available on your PATH and can be run from any directory.
+After installation, `vellum-lyrics` will be available on your PATH and can be run from any directory.
 
 ## Usage
 
