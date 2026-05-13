@@ -107,7 +107,7 @@ If you prefer to install manually:
 1. **Install the Rust binary:**
 
 ```bash
-cargo install vellum
+cargo install vellum-lyrics
 ```
 
 2. **Install `syncedlyrics`:**
