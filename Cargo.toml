@@ -1,5 +1,5 @@
 [package]
-name = "vellum"
+name = "vellum-lyrics"
 version = "0.1.0"
 edition = "2021"
 description = "A Kitty-compatible TUI for word-synced lyrics from MPRIS players"
