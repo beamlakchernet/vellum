@@ -1,12 +1,11 @@
 use std::time::Duration;
 
 use anyhow::{Context, Result};
-use mpris::{Metadata, Player, PlayerFinder};
+use mpris::{Player, PlayerFinder};
 
 #[derive(Debug)]
 pub struct PlayerSession {
     player: Player,
-    metadata: Metadata,
 }
 
 #[derive(Debug, Clone)]
@@ -19,16 +18,19 @@ impl PlayerSession {
     pub fn capture() -> Result<Self> {
         let finder = PlayerFinder::new().context("failed to connect to MPRIS/D-Bus")?;
         let player = finder.find_active().context("no active MPRIS player was found")?;
-        let metadata = player.get_metadata().context("failed to read MPRIS metadata")?;
-
-        Ok(Self { player, metadata })
+        Ok(Self { player })
     }
 
     pub fn metadata(&self) -> PlayerTrackInfo {
-        let title = self.metadata.title().unwrap_or("Unknown title").to_owned();
-        let artist = self
-            .metadata
-            .artists()
+        let metadata = self.player.get_metadata().ok();
+        let title = metadata
+            .as_ref()
+            .and_then(|metadata| metadata.title())
+            .unwrap_or("Unknown title")
+            .to_owned();
+        let artist = metadata
+            .as_ref()
+            .and_then(|metadata| metadata.artists())
             .and_then(|artists| artists.first().copied())
             .unwrap_or("Unknown artist")
             .to_owned();
